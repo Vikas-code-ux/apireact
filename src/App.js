@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import DataGrid from "./DataGrid";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+async function visitors(){
+    let response = await fetch('http://jsonplaceholder.typicode.com/users');
+    let data = await response.json();
+    console.log(data);
+    return data;
 }
 
-export default App;
+
+export default function App(){
+    const [users, setUsers]=React.useState([]);
+    
+    React.useEffect(
+        async function(){
+        let tempusers=await visitors();
+        setUsers(tempusers);
+    },
+    [])
+    return(
+        <DataGrid users={users} />
+    )
+}
