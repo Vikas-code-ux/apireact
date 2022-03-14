@@ -16,8 +16,7 @@ export default function App(){
         async function(){
         let tempusers=await visitors();
         setUsers(tempusers);
-    },
-    [])
+    },[])
     return(
         <DataGrid users={users} />
     )
