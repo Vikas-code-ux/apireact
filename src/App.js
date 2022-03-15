@@ -1,5 +1,6 @@
 import React from 'react';
 import DataGrid from "./DataGrid";
+import Updategrid from "./Updategrid";
 
 async function visitors(){
     let response = await fetch('http://jsonplaceholder.typicode.com/users');
@@ -18,6 +19,9 @@ export default function App(){
         setUsers(tempusers);
     },[])
     return(
+        <div>
         <DataGrid users={users} />
+        <Updategrid/>
+        </div>
     )
 }
